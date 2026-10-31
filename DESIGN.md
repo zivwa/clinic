@@ -6,4 +6,6 @@ Tokens: navy #153653; teal #138d82; workspace #f5f8fa; public background #fbfcfa
 
 Responsive tables scroll horizontally. Mobile doctor navigation opens over a scrim. Public navigation becomes a compact menu. Forms stack to one column; dashboard panels stack. Respect reduced motion. All demo records are fictional. Record metadata persists in localStorage; uploaded report files persist in IndexedDB in the same browser.
 
-Homepage doctor portrait: use the supplied square photograph with a 1:1 aspect ratio and square corners. Keep the doctor name, qualifications and caption in normal flow below the image, never over the face. The About page uses the same original photo with centered framing.
+Homepage doctor portrait: use the supplied square photograph with a 1:1 aspect ratio and 16px curved corners. Keep the doctor name, qualifications and caption in normal flow below the image, never over the face. The About page uses the same original photo with centered framing.
+
+Separate surfaces: /clinic owns the public navigation; /patient has its own header and URL-based patient sections; /doctor retains the operational sidebar. Patient profile details start read-only and enter an explicit edit state. Authentication forms use the existing panel, sage and teal primitives with clear demo labeling. Booking uses the original square doctor photograph with centered framing and curved edges.

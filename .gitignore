@@ -5,3 +5,6 @@ dist/
 .tmp/
 site.zip
 outputs/
+
+playwright-report/
+test-results/

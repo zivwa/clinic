@@ -9,4 +9,4 @@ Doctor and clinic staff demonstrating management workflows; patients exploring t
 ## Purpose
 One responsive website with public clinic pages, patient portal, and doctor workspace. Android is a later phase.
 ## Constraints
-Frontend only, fictional patient data, browser-local persistence, explicit prototype labeling. Clinic facts and doctor identity supplied by the user. No real authentication or integrations.
+Frontend only, fictional patient data, browser-local persistence, explicit prototype labeling. Clinic facts and doctor identity supplied by the user. Browser-local single-patient demo sign-in/sign-up only; no production authentication or integrations. Clinic, patient and doctor use separate route families.

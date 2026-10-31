@@ -1,0 +1,10 @@
+import {useState} from 'react';
+import {Link,useParams} from 'react-router-dom';
+import {ArrowLeft,CalendarDays} from 'lucide-react';
+import {useStore} from './store';
+import {Heading,Badge} from './ui';
+import {DoctorCare} from './Care';
+import {Detail} from './Module';
+import {appointmentLabel} from './careData';
+import type {Row} from './store';
+export default function DoctorPatientPage(){const {patientId}=useParams();const {data}=useStore();const p=data.patients.find(r=>r.id===patientId);const [view,setView]=useState<Row|null>(null);if(!p)return <div className="empty">Patient not found. <Link to="/doctor/patients">Return to patients</Link></div>;const appointments=data.appointments.filter(a=>a.patientId===p.id||(!a.patientId&&a.patient===p.name)).sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));return <><Link className="text-link" to="/doctor/appointments"><ArrowLeft size={16}/> Back to appointments</Link><Heading title={p.name} sub={'Patient '+p.id+' · Profile, appointment history and shared reports'}/><section className="panel care-section"><h2>Patient details</h2><dl className="patient-detail-grid">{[['age','Age'],['gender','Gender'],['phone','Phone'],['email','Email'],['blood','Blood group'],['allergies','Allergies'],['emergency','Emergency contact'],['history','Medical history']].map(([key,label])=><div key={key}><dt>{label}</dt><dd>{p[key]||'Not provided'}</dd></div>)}</dl></section><section className="panel care-section advice-panel"><h2>Appointment history</h2>{appointments.map(a=><article className="care-entry" key={a.id}><CalendarDays size={20}/><div><strong>{a.date} · {a.time} · {a.type}</strong><p>{a.condition||'Cardiac assessment'} · {a.reason}</p><Badge value={appointmentLabel(a.status)}/></div><button className="btn secondary" onClick={()=>setView(a)}>Open visit & files</button></article>)}{!appointments.length&&<p className="empty">No appointments yet.</p>}</section><section className="panel care-section advice-panel"><h2>Reports, health updates & care plan</h2><DoctorCare patientId={p.id}/></section>{view&&<Detail kind="appointments" row={view} close={()=>setView(null)}/>}</>}
